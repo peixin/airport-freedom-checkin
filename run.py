@@ -6,7 +6,7 @@ from src import main
 
 def main_handler(event: Dict, context: Dict):
     is_cloud_function = os.environ.get("TENCENTCLOUD_RUNENV") is not None
-    main(not is_cloud_function)
+    return main(not is_cloud_function)
 
 
 if __name__ == "__main__":

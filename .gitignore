@@ -24,11 +24,15 @@ yarn-error.log*
 *.sw?
 
 */__pycache__/*
+__pycache__
 
 .history/
 _data/*.log
 _data/*.log.*
 _data/user.config
 _data/user.cookies
-.env
-serverless.yml
+_data/qcloud.env
+_data/code.zip
+
+venv
+.version

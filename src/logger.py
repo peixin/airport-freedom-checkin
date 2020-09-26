@@ -1,6 +1,6 @@
 import logging
 from logging.handlers import TimedRotatingFileHandler
-from . import config
+import config
 
 logger = logging.getLogger("check-in-logger")
 
@@ -10,11 +10,11 @@ def setup_logger(is_local: bool):
 
     formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 
-    stream_handler = logging.StreamHandler()
-    stream_handler.setFormatter(formatter)
-    logger.addHandler(stream_handler)
-
     if is_local:
+        stream_handler = logging.StreamHandler()
+        stream_handler.setFormatter(formatter)
+        logger.addHandler(stream_handler)
+
         rotating_handler = logging.handlers.RotatingFileHandler(config.LOG_FILE,
                                                                 maxBytes=config.LOG_FILE_MAX_SIZE,
                                                                 backupCount=config.LOG_FILE_BACKUP_COUNT)

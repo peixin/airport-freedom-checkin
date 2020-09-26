@@ -6,7 +6,7 @@ from urllib import parse
 from datetime import datetime
 import os
 
-from . import config
+import config
 from .logger import logger
 
 
