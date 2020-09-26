@@ -23,8 +23,12 @@ yarn-error.log*
 *.sln
 *.sw?
 
+*/__pycache__/*
 
 .history/
-*.log
-user.config
-user.cookies
+_data/*.log
+_data/*.log.*
+_data/user.config
+_data/user.cookies
+.env
+serverless.yml
