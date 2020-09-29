@@ -59,7 +59,7 @@ class CheckIn(metaclass=abc.ABCMeta):
         logger.error("login failed")
         logger.error(response.text)
 
-    def check_in(self) -> None:
+    def check_in(self) -> Tuple[bool, str]:
         if not self.cookies:
             logger.warn("no cookies")
             return
@@ -76,17 +76,17 @@ class CheckIn(metaclass=abc.ABCMeta):
                 logger.info(data.get("trafficInfo"))
             else:
                 logger.info(data.get("msg", "no message"))
-            return True
+            return True, data.get("msg", "no message")
         else:
             logger.error("check in failed")
             logger.error(response.text)
-            return False
+            return True, data.get("msg", response.text)
 
     @abc.abstractmethod
     def cache_cookies(self) -> None:
         pass
 
-    def process(self) -> bool:
+    def process(self):
         self.init_user_info()
         self.login()
         self.cache_cookies()

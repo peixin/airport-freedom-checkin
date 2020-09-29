@@ -18,3 +18,9 @@ Automatically check in on the deyun platform everyday, just for knowledge freedo
     - `cd _data && mv qcloud.env.template qcloud.env`
     - `vi qcloud.env`
     - `python deploy/deploy-to-qcloud-scf.py`
+    - set user.config to SCF environment variable 
+
+- Send check in result to personal Wechat use [「Server酱」，英文名「ServerChan」](http://sc.ftqq.com/3.version)
+    - `cd _data && mv server-chan-key.template server-chan-key`
+    - `vi server-chan-key`
+    - set SERVER_CHAN_KEY to SCF environment variable

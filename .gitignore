@@ -33,6 +33,7 @@ _data/user.config
 _data/user.cookies
 _data/qcloud.env
 _data/code.zip
+_data/server-chan-key
 
 venv
 .version

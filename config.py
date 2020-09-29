@@ -20,3 +20,7 @@ QCLOUD_API_ENDPOINT = "scf.tencentcloudapi.com"
 QCLOUD_REGION = "ap-guangzhou"
 QCLOUD_FUNCTION_NAME = "freedom-checkin"
 QCLOUD_FUNCTION_HANDLER = "run.main_handler"
+
+# remind wechat
+SERVER_CHAN_FILE = os.path.join(DATA_DIR, "server-chan-key")
+SERVER_CHAN_SEND_URL = "https://sc.ftqq.com/{}.send"
