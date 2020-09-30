@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+from pytz import timezone
 from typing import Tuple
 import requests
 import config
@@ -15,11 +16,11 @@ def get_version():
         return ""
 
 
-def remind_by_wechat(is_local: bool, result_info: Tuple[bool, str]):
-    result, message = result_info
-    today = datetime.now().strftime("%Y.%m.%d")
+def remind_by_wechat(is_local: bool, result_info: Tuple[bool, str, str]):
+    result, title, message = result_info
+    today = datetime.now(tz=timezone(config.TIMEZONE)).strftime("%Y.%m.%d")
     params = {
-        "text": f"{today}, {message if result else 'Failed'}",
+        "text": f"{today}, {title}",
         "desp": message
     }
     server_chan_key = os.environ.get("SERVER_CHAN_KEY")

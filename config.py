@@ -2,6 +2,7 @@ import os
 
 ROOT_DIR = os.path.dirname(__file__)
 DATA_DIR = os.path.join(ROOT_DIR, "_data")
+TIMEZONE = "Asia/Shanghai"
 
 # check in
 LOG_FILE = os.path.join(DATA_DIR, "checkin.log")

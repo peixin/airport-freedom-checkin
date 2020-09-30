@@ -59,7 +59,7 @@ class CheckIn(metaclass=abc.ABCMeta):
         logger.error("login failed")
         logger.error(response.text)
 
-    def check_in(self) -> Tuple[bool, str]:
+    def check_in(self) -> Tuple[bool, str, str]:
         if not self.cookies:
             logger.warn("no cookies")
             return
@@ -70,17 +70,22 @@ class CheckIn(metaclass=abc.ABCMeta):
         response = requests.post(url, headers=headers, cookies=self.cookies)
         data = parse_json(response.text)
         if data:
+            traffic_info = ""
             if data.get("ret", 0) == CheckIn.CHECK_IN_SUCCESS_FLAG:
                 logger.info("check in successful")
                 logger.info(data.get("msg", "no message"))
                 logger.info(data.get("trafficInfo"))
+                traffic_info = data.get("trafficInfo")
             else:
                 logger.info(data.get("msg", "no message"))
-            return True, data.get("msg", "no message")
+            return True, data.get("msg", "no message"), traffic_info
         else:
             logger.error("check in failed")
             logger.error(response.text)
-            return True, data.get("msg", response.text)
+            text = response.text.strip()
+            if text.startswith("<!DOCTYPE html>"):
+                text = "raw html"
+            return False, "Check In Failed", text
 
     @abc.abstractmethod
     def cache_cookies(self) -> None:
