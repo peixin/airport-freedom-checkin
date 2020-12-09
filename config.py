@@ -11,7 +11,7 @@ LOG_FILE_BACKUP_COUNT = 5
 
 USER_CONFIG_FILE = os.path.join(DATA_DIR, "user.config")
 USER_COOKIES_FILE = os.path.join(DATA_DIR, "user.cookies")
-PLATFORM_HOST = "https://www.deyun126.xyz"
+PLATFORM_HOST = "https://www.deyun126.xyz" # your jichang url
 LOGIN_SUCCESS_FLAG = 1
 CHECK_IN_SUCCESS_FLAG = 1
 
@@ -19,7 +19,8 @@ CHECK_IN_SUCCESS_FLAG = 1
 QCLOUD_ENV_FILE = os.path.join(DATA_DIR, "qcloud.env")
 QCLOUD_API_ENDPOINT = "scf.tencentcloudapi.com"
 QCLOUD_REGION = "ap-guangzhou"
-QCLOUD_FUNCTION_NAME = "freedom-checkin"
+QCLOUD_FUNCTION_NAME = "freedom-checkin" # your scf function name
+QCLOUD_FUNCTION_NAME_TRIGGER = "0 0 5 * * * *" # your trigger crontab
 QCLOUD_FUNCTION_HANDLER = "run.main_handler"
 
 # remind wechat

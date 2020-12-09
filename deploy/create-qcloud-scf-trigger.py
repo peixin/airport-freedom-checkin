@@ -19,7 +19,7 @@ def create_trigger(secret_info: Dict[str, str]):
             "FunctionName": config.QCLOUD_FUNCTION_NAME,
             "TriggerName": "checkin-trigger",
             "Type": "timer",
-            "TriggerDesc": "0 0 4 * * * *",
+            "TriggerDesc": config.QCLOUD_FUNCTION_NAME_TRIGGER,
             "Enable": "OPEN"
         }
         req.from_json_string(json.dumps(params))
