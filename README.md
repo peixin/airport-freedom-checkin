@@ -17,7 +17,6 @@ Automatically check in on the "Airport"(机场) platform everyday, just for know
 - Send check in result to personal Wechat use [「Server酱」，英文名「ServerChan」](http://sc.ftqq.com/3.version)
     - `cd _data && mv server-chan-key.template server-chan-key`
     - `vi server-chan-key`
-    - set SERVER_CHAN_KEY to SCF environment variable
     
 - account or sub account grant permission: `QcloudSCFFullAccess`
 
