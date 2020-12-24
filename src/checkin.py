@@ -78,7 +78,7 @@ class CheckIn(metaclass=abc.ABCMeta):
                 traffic_info = data.get("trafficInfo")
             else:
                 logger.info(data.get("msg", "no message"))
-            return True, data.get("msg", "no message"), traffic_info
+            return True, data.get("msg", "no message"), f"```{traffic_info}```"
         else:
             logger.error("check in failed")
             logger.error(response.text)
