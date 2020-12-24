@@ -38,11 +38,7 @@ class CheckIn(metaclass=abc.ABCMeta):
         username, password = self.user_info
 
         url = parse.urljoin(CheckIn.PLATFORM_HOST, "/auth/login")
-        payload = {
-            "email": username,
-            "passwd": password,
-            "code": ""
-        }
+        payload = {"email": username, "passwd": password, "code": ""}
         headers = {
             "Accept": "application/json",
             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -51,7 +47,11 @@ class CheckIn(metaclass=abc.ABCMeta):
         response = requests.post(url, headers=headers, data=parse.urlencode(payload))
 
         data = parse_json(response.text)
-        if response.status_code == 200 and data and data.get("ret") == CheckIn.LOGIN_SUCCESS_FLAG:
+        if (
+            response.status_code == 200
+            and data
+            and data.get("ret") == CheckIn.LOGIN_SUCCESS_FLAG
+        ):
             logger.info("login successful")
             self.cookies = response.cookies.get_dict()
             return
@@ -64,9 +64,7 @@ class CheckIn(metaclass=abc.ABCMeta):
             logger.warn("no cookies")
             return
         url = parse.urljoin(CheckIn.PLATFORM_HOST, "/user/checkin")
-        headers = {
-            "Accept": "application/json"
-        }
+        headers = {"Accept": "application/json"}
         response = requests.post(url, headers=headers, cookies=self.cookies)
         data = parse_json(response.text)
         if data:
@@ -75,10 +73,11 @@ class CheckIn(metaclass=abc.ABCMeta):
                 logger.info("check in successful")
                 logger.info(data.get("msg", "no message"))
                 logger.info(data.get("trafficInfo"))
-                traffic_info = data.get("trafficInfo")
+                traffic_info = data.get("trafficInfo", {})
+                traffic_info = f"```{traffic_info}```"
             else:
                 logger.info(data.get("msg", "no message"))
-            return True, data.get("msg", "no message"), f"```{traffic_info}```"
+            return True, data.get("msg", "no message"), traffic_info
         else:
             logger.error("check in failed")
             logger.error(response.text)

@@ -2,7 +2,9 @@ import sys
 from os import path
 from typing import Dict
 import json
-from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
+from tencentcloud.common.exception.tencent_cloud_sdk_exception import (
+    TencentCloudSDKException,
+)
 from tencentcloud.scf.v20180416 import models
 
 sys.path.append(path.dirname(path.dirname(__file__)))
@@ -20,7 +22,7 @@ def create_trigger(secret_info: Dict[str, str]):
             "TriggerName": "checkin-trigger",
             "Type": "timer",
             "TriggerDesc": config.QCLOUD_FUNCTION_NAME_TRIGGER,
-            "Enable": "OPEN"
+            "Enable": "OPEN",
         }
         req.from_json_string(json.dumps(params))
 

@@ -2,12 +2,19 @@ import json
 import sys
 from os import path
 from typing import Dict
-from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
+from tencentcloud.common.exception.tencent_cloud_sdk_exception import (
+    TencentCloudSDKException,
+)
 from tencentcloud.scf.v20180416 import models
 
 sys.path.append(path.dirname(path.dirname(__file__)))
 import config
-from deploy.qcloud_scf_common import get_secret_info, set_version, get_code, get_scf_client
+from deploy.qcloud_scf_common import (
+    get_secret_info,
+    set_version,
+    get_code,
+    get_scf_client,
+)
 
 
 def update_function_code(secret_info: Dict[str, str], code: str):
@@ -18,7 +25,7 @@ def update_function_code(secret_info: Dict[str, str], code: str):
         params = {
             "FunctionName": config.QCLOUD_FUNCTION_NAME,
             "Handler": config.QCLOUD_FUNCTION_HANDLER,
-            "ZipFile": code
+            "ZipFile": code,
         }
         req.from_json_string(json.dumps(params))
 

@@ -19,10 +19,7 @@ def get_version():
 def remind_by_wechat(is_local: bool, result_info: Tuple[bool, str, str]):
     result, title, message = result_info
     today = datetime.now(tz=timezone(config.TIMEZONE)).strftime("%Y.%m.%d")
-    params = {
-        "text": f"{today}, {title}",
-        "desp": message
-    }
+    params = {"text": f"{today}, {title}", "desp": message}
     server_chan_key = os.environ.get("SERVER_CHAN_KEY")
     if is_local:
         try:

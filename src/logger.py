@@ -15,8 +15,10 @@ def setup_logger(is_local: bool):
         stream_handler.setFormatter(formatter)
         logger.addHandler(stream_handler)
 
-        rotating_handler = logging.handlers.RotatingFileHandler(config.LOG_FILE,
-                                                                maxBytes=config.LOG_FILE_MAX_SIZE,
-                                                                backupCount=config.LOG_FILE_BACKUP_COUNT)
+        rotating_handler = logging.handlers.RotatingFileHandler(
+            config.LOG_FILE,
+            maxBytes=config.LOG_FILE_MAX_SIZE,
+            backupCount=config.LOG_FILE_BACKUP_COUNT,
+        )
         rotating_handler.setFormatter(formatter)
         logger.addHandler(rotating_handler)

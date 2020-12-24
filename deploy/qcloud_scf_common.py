@@ -18,7 +18,12 @@ def get_secret_info():
     env_file = path.join(config.DATA_DIR, config.QCLOUD_ENV_FILE)
     try:
         with open(env_file, "r") as f:
-            return dict([map(lambda x: x.strip(), line.strip().split("=")) for line in f.readlines()])
+            return dict(
+                [
+                    map(lambda x: x.strip(), line.strip().split("="))
+                    for line in f.readlines()
+                ]
+            )
     except:
         return None
 
@@ -59,7 +64,9 @@ def get_code():
 
 
 def get_scf_client(secret_info: Dict[str, str]):
-    cred = credential.Credential(secret_info.get("TENCENT_SECRET_ID"), secret_info.get("TENCENT_SECRET_KEY"))
+    cred = credential.Credential(
+        secret_info.get("TENCENT_SECRET_ID"), secret_info.get("TENCENT_SECRET_KEY")
+    )
     http_profile = HttpProfile()
     http_profile.endpoint = config.QCLOUD_API_ENDPOINT
 

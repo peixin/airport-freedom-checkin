@@ -2,12 +2,19 @@ import sys
 from os import path
 from typing import Dict
 import json
-from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
+from tencentcloud.common.exception.tencent_cloud_sdk_exception import (
+    TencentCloudSDKException,
+)
 from tencentcloud.scf.v20180416 import models
 
 sys.path.append(path.dirname(path.dirname(__file__)))
 import config
-from deploy.qcloud_scf_common import get_secret_info, set_version, get_code, get_scf_client
+from deploy.qcloud_scf_common import (
+    get_secret_info,
+    set_version,
+    get_code,
+    get_scf_client,
+)
 
 
 def create_function(secret_info: Dict[str, str], code: str, envs: Dict):
@@ -19,28 +26,17 @@ def create_function(secret_info: Dict[str, str], code: str, envs: Dict):
             "FunctionName": config.QCLOUD_FUNCTION_NAME,
             "Handler": config.QCLOUD_FUNCTION_HANDLER,
             "Description": "for freedom check in function",
-            "Code": {
-                "ZipFile": code
-            },
+            "Code": {"ZipFile": code},
             "MemorySize": 128,
             "Timeout": 30,
             "Environment": {
                 "Variables": [
-                    {
-                        "Key": "USERNAME",
-                        "Value": envs.get("user_info")[0]
-                    },
-                    {
-                        "Key": "PASSWORD",
-                        "Value": envs.get("user_info")[1]
-                    },
-                    {
-                        "Key": "SERVER_CHAN_KEY",
-                        "Value": envs.get("server_chan_key")
-                    }
+                    {"Key": "USERNAME", "Value": envs.get("user_info")[0]},
+                    {"Key": "PASSWORD", "Value": envs.get("user_info")[1]},
+                    {"Key": "SERVER_CHAN_KEY", "Value": envs.get("server_chan_key")},
                 ]
             },
-            "Runtime": "Python3.6"
+            "Runtime": "Python3.6",
         }
         req.from_json_string(json.dumps(params))
 
