@@ -11,7 +11,7 @@ LOG_FILE_BACKUP_COUNT = 5
 
 USER_CONFIG_FILE = os.path.join(DATA_DIR, "user.config")
 USER_COOKIES_FILE = os.path.join(DATA_DIR, "user.cookies")
-PLATFORM_HOST = "https://www.deyun126.xyz"  # your jichang url
+PLATFORM_HOST = "https://www.deyun128.xyz"  # your jichang url
 LOGIN_SUCCESS_FLAG = 1
 CHECK_IN_SUCCESS_FLAG = 1
 
@@ -25,4 +25,4 @@ QCLOUD_FUNCTION_HANDLER = "run.main_handler"
 
 # remind wechat
 SERVER_CHAN_FILE = os.path.join(DATA_DIR, "server-chan-key")
-SERVER_CHAN_SEND_URL = "https://sc.ftqq.com/{}.send"
+SERVER_CHAN_SEND_URL = "https://sctapi.ftqq.com/{}.send"
