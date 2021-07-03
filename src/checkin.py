@@ -18,7 +18,7 @@ def parse_json(text: str):
 
 
 class CheckIn(metaclass=abc.ABCMeta):
-    PLATFORM_HOST = config.PLATFORM_HOST
+    PLATFORM_HOST = os.environ.get("PLATFORM_HOST", config.PLATFORM_HOST)
     LOGIN_SUCCESS_FLAG = config.LOGIN_SUCCESS_FLAG
     CHECK_IN_SUCCESS_FLAG = config.CHECK_IN_SUCCESS_FLAG
 
@@ -44,7 +44,13 @@ class CheckIn(metaclass=abc.ABCMeta):
             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         }
 
-        response = requests.post(url, headers=headers, data=parse.urlencode(payload))
+        try:
+            response = requests.post(
+                url, headers=headers, data=parse.urlencode(payload)
+            )
+        except Exception as e:
+            logger.error("login request error:" + str(e))
+            return
 
         data = parse_json(response.text)
         if (

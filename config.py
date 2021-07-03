@@ -11,7 +11,7 @@ LOG_FILE_BACKUP_COUNT = 5
 
 USER_CONFIG_FILE = os.path.join(DATA_DIR, "user.config")
 USER_COOKIES_FILE = os.path.join(DATA_DIR, "user.cookies")
-PLATFORM_HOST = "https://www.deyun128.xyz"  # your jichang url
+PLATFORM_HOST = "https://langchao18.xyz"  # your jichang url
 LOGIN_SUCCESS_FLAG = 1
 CHECK_IN_SUCCESS_FLAG = 1
 
