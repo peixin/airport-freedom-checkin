@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
 from pytz import timezone
+import re
 from typing import Tuple
 import requests
 import config
@@ -17,9 +18,13 @@ def get_version():
 
 
 def remind_by_wechat(is_local: bool, result_info: Tuple[bool, str, str]):
+    platform = os.environ.get("PLATFORM_HOST", config.PLATFORM_HOST)
+    match = re.match("(https?://)?([\w.-]+)(:\d+)?/?", platform)
+    platform = match.groups()[1] if match else "--"
+    
     result, title, message = result_info
     today = datetime.now(tz=timezone(config.TIMEZONE)).strftime("%Y.%m.%d")
-    data = {"title": f"{today}, {title}", "desp": message}
+    data = {"title": f"{platform}, {today}, {title}", "desp": message}
     server_chan_key = os.environ.get("SERVER_CHAN_KEY")
     if is_local:
         try:
