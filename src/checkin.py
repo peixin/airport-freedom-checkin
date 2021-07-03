@@ -26,6 +26,7 @@ class CheckIn(metaclass=abc.ABCMeta):
         super().__init__()
         self.user_info: Tuple[str, str] = None
         self.cookies: Dict[str, Union[str, int]] = None
+        logger.info(f"platform: {CheckIn.PLATFORM_HOST}")
 
     @abc.abstractmethod
     def init_user_info(self) -> None:
